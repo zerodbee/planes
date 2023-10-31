@@ -1,5 +1,7 @@
 <?php
 
+require_once('./app/Plane.php');
+
 class Airport
 {
     private $planes; // Агрегация объекта класса Plane
@@ -19,6 +21,24 @@ class Airport
         } else {
             echo "Неправильный тип самолета!\n";
         }
+    }
+    
+    public function createMigPlane($name, $maxSpeed)
+    {
+    	$plane = new MigPlane($name, $maxSpeed); // Композиция
+    	$this->planes[] = $plane;
+        echo $plane->getName() . " создан и принят на аэропорт.\n";
+        
+        return $plane;
+    }
+    
+    public function createTu154PlanePlane($name, $maxSpeed)
+    {
+    	$plane = new Tu154Plane($name, $maxSpeed); // Композиция
+    	$this->planes[] = $plane;
+        echo $plane->getName() . " создан и принят на аэропорт.\n";
+        
+        return $plane;
     }
 
     public function releasePlane($plane)
